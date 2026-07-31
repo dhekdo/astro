@@ -1,0 +1,70 @@
+---
+import Navigation from './Navigation.astro';
+import ThemeIcon from './ThemeIcon.astro';
+---
+<header>
+	<nav>
+		<a href="/" class="logo">Astro</a>
+		<div class="nav-links" id="nav-links">
+			<Navigation />
+		</div>
+		<ThemeIcon />
+		<button class="hamburger" id="hamburger">
+			<span class="line"></span>
+			<span class="line"></span>
+			<span class="line"></span>
+		</button>
+	</nav>
+</header>
+
+<style>
+	header {
+		border-bottom: 1px solid #cbd5e1;
+	}
+	nav {
+		display: flex;
+		justify-content: space-between;
+		align-items: center;
+	}
+	.logo {
+		font-weight: bold;
+		text-decoration: none;
+		color: black;
+	}
+	.nav-links a {
+		padding: 0.5rem;
+	}
+	.hamburger {
+		display: none;
+		flex-direction: column;
+		justify-content: space-between;
+		width: 2rem;
+		height: 2rem;
+		background: transparent;
+		border: none;
+		cursor: pointer;
+	}
+	.hamburger .line {
+		height: 3px;
+		width: 100%;
+		background-color: black;
+	}
+
+	@media screen and (max-width: 636px) {
+		.nav-links {
+			display: none;
+		}
+		.nav-links.expanded {
+			display: block;
+		}
+		.hamburger {
+			display: flex;
+		}
+	}
+</style>
+
+<script>
+	document.querySelector('.hamburger')?.addEventListener('click', () => {
+		document.querySelector('.nav-links')?.classList.toggle('expanded');
+	});
+</script>
