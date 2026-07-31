@@ -1,0 +1,20 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+
+const allPosts = Object.values(
+	import.meta.glob('../posts/*.md', { eager: true })
+) as { frontmatter: { tags: string[] } }[];
+
+const tags = [...new Set(allPosts.flatMap((post) => post.frontmatter.tags))];
+const base = import.meta.env.BASE_URL.endsWith('/') ? import.meta.env.BASE_URL : `${import.meta.env.BASE_URL}/`;
+
+const pageTitle = "Tag Index";
+---
+
+<BaseLayout pageTitle={pageTitle}>
+	<div class="tags">
+		{tags.map((tag) => (
+			<p><a href={`${base}tags/${tag}`}>{tag}</a></p>
+		))}
+	</div>
+</BaseLayout>

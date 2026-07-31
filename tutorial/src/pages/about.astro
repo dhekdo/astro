@@ -1,25 +1,49 @@
 ---
+import BaseLayout from '../layouts/BaseLayout.astro';
 
+const pageTitle = "About Me";
+
+const identity = {
+	firstName: "Jungwoo",
+	country: "South Korea",
+	occupation: "Web Developer",
+	hobbies: ["photography", "reading", "cycling"],
+};
+
+const skills = ["HTML", "CSS", "JavaScript", "React", "Astro"];
+
+const happy = true;
+const finished = false;
+const goal = 3;
 ---
 
-<html lang="en">
-	<head>
-		<meta charset="utf-8" />
-		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-		<link rel="icon" href="/favicon.ico" />
-		<meta name="viewport" content="width=device-width" />
-		<meta name="generator" content={Astro.generator} />
-		<title>Astro</title>
-	</head>
-	<body>
+<BaseLayout pageTitle={pageTitle}>
+	<h2>... and my new Astro site!</h2>
 
-        <a href="/">Home</a>
-        <a href="/about/">About</a>
-		<h1>About Me</h1>
-        <h2>... and my new Astro site!</h2>
+	<p>I am working through Astro's introductory tutorial. This is the second page on my website, and it's the first one I built myself!</p>
 
-        <p>I am working through Astro's introductory tutorial. This is the second page on my website, and it's the first one I built myself!</p>
+	<p>This site will update as I complete more of the tutorial, so keep checking back and see how my journey is going!</p>
 
-        <p>This site will update as I complete more of the tutorial, so keep checking back and see how my journey is going!</p>
-	</body>
-</html>
+	<p>My name is {identity.firstName} and I live in {identity.country}, working as a {identity.occupation}.</p>
+
+	{happy && <p>I am happy to be learning Astro!</p>}
+	{finished && <p>I finished this tutorial!</p>}
+	{goal === 3 ? <p>My goal is to complete the tutorial in 3 days.</p> : <p>My goal is not 3 days.</p>}
+
+	<p>Here are a few of my hobbies:</p>
+	<ul>
+		{identity.hobbies.map((hobby) => <li>{hobby}</li>)}
+	</ul>
+
+	<p>My skills are:</p>
+	<ul>
+		{skills.map((skill) => <li class="skill">{skill}</li>)}
+	</ul>
+</BaseLayout>
+
+<style>
+	.skill {
+		color: green;
+		font-weight: bold;
+	}
+</style>
